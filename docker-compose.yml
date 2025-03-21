@@ -1,9 +1,29 @@
 version: '3.8'
 services:
+  web:
+    build: .
+    ports:
+      - "0.0.0.0:5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - TESSERACT_URL=http://tesseract:5000/api/ocr
+    depends_on:
+      - tesseract
+    networks:
+      - self-hosted-ai-starter-kit_demo
+    restart: unless-stopped
+
   tesseract:
     build: ./tesseract_api
     ports:
       - "8180:5000"
     environment:
       - PYTHONUNBUFFERED=1
+    networks:
+      - self-hosted-ai-starter-kit_demo
     restart: unless-stopped
+
+networks:
+  self-hosted-ai-starter-kit_demo:
+    external: true

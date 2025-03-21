@@ -14,6 +14,7 @@ This is a web-based OCR (Optical Character Recognition) application that support
 - Admin interface for API key management
 - Secure file handling with base64 encoding
 - Docker containerization
+- Integration with n8n for automation
 
 ### Installation
 1. Clone the repository:
@@ -50,6 +51,25 @@ curl -X POST \
   -F 'file=@/path/to/your/file.pdf'
 ```
 
+### Integration with n8n
+You can use the application with n8n by:
+
+1. Using the following cURL command:
+```bash
+curl -X POST 'http://[docker-ip]:5000/ocr' \
+-H 'X-API-Name: mohammed' \
+-H 'X-API-Key: mk_1234567890abcdef1234567890abcdef' \
+-F 'file=@/path/to/file.pdf'
+```
+
+2. Or using HTTP Request in n8n:
+- Method: POST
+- URL: http://[docker-ip]:5000/ocr
+- Headers:
+  - X-API-Name: mohammed
+  - X-API-Key: mk_1234567890abcdef1234567890abcdef
+- Body: Form-data with 'file' field
+
 ### Technical Stack
 - Flask web framework
 - SQLite database
@@ -71,6 +91,7 @@ curl -X POST \
 - واجهة إدارة لمفاتيح API
 - معالجة آمنة للملفات باستخدام ترميز base64
 - حاويات Docker
+- تكامل مع n8n للأتمتة
 
 ### التثبيت
 1. استنساخ المستودع:
@@ -106,6 +127,25 @@ curl -X POST \
   -H 'X-API-Name: mohammed' \
   -F 'file=@/path/to/your/file.pdf'
 ```
+
+### التكامل مع n8n
+يمكن استخدام التطبيق مع n8n عن طريق:
+
+1. استخدام أمر cURL التالي:
+```bash
+curl -X POST 'http://[docker-ip]:5000/ocr' \
+-H 'X-API-Name: mohammed' \
+-H 'X-API-Key: mk_1234567890abcdef1234567890abcdef' \
+-F 'file=@/path/to/file.pdf'
+```
+
+2. أو استخدام HTTP Request في n8n:
+- Method: POST
+- URL: http://[docker-ip]:5000/ocr
+- Headers:
+  - X-API-Name: mohammed
+  - X-API-Key: mk_1234567890abcdef1234567890abcdef
+- Body: Form-data with 'file' field
 
 ### التقنيات المستخدمة
 - إطار عمل Flask
